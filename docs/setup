@@ -1,0 +1,17 @@
+# setup
+# use python2
+pip install virtualenv
+cd vanishing-point-detection/src
+virtualenv -p <pathToPythonExe> virtual_env
+
+#activate virtual environment:
+#linux:
+source virtual_env/activate
+#windows:
+virtual_env\scripts\activate
+
+pip install opencv-python
+
+# place images in "vanishing-point-detection\pictures\input\"
+
+python testing
