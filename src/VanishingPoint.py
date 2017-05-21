@@ -16,6 +16,9 @@ def hough_transform(img):
     # cv2.imwrite('../pictures/output/canny.jpg', edges)
 
     lines = cv2.HoughLines(edges, 1, np.pi / 180, 200)  # Hough line detection
+    if lines is None:
+        return None
+
     hough_lines = []
 
     # Lines are represented by rho, theta; convert to endpoint notation
@@ -67,9 +70,9 @@ def line_intersection(line1, line2):
 # Find intersections between multiple lines (not line segments!)
 def find_intersections(lines, img):
     intersections = []
-    for i in xrange(len(lines)):
+    for i in range(len(lines)):
         line1 = lines[i]
-        for j in xrange(i + 1, len(lines)):
+        for j in range(i + 1, len(lines)):
             line2 = lines[j]
 
             if not line1 == line2:
@@ -99,8 +102,8 @@ def find_vanishing_point(img, grid_size, intersections):
     max_intersections = 0
     best_cell = None
 
-    for i in xrange(grid_rows):
-        for j in xrange(grid_columns):
+    for i in range(grid_rows):
+        for j in range(grid_columns):
             cell_left = i * grid_size
             cell_right = (i + 1) * grid_size
             cell_bottom = j * grid_size
